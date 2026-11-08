@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#233c35">
+  <title>OrientDig spreadsheet: Kategorien, QC &amp; Größen erklärt</title>
+  <meta name="description" content="OrientDig spreadsheet verständlich nutzen: Kategorien entdecken, QC-Fotos einordnen, Maße vergleichen und eine übersichtliche Produktauswahl erstellen.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="OrientDig spreadsheet – gezielter auswählen">
+  <meta property="og:description" content="Ein unabhängiger Leitfaden für Produktlinks, Größen, QC-Fotos und eine durchdachte Auswahl. Mit direkten Kategorie-Einstiegen zu hipobuyfind.com.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OrientDig spreadsheet – gezielter auswählen">
+  <meta name="twitter:description" content="Kategorien, Maße und Bilddetails: ein kompakter Leitfaden für deine nächste Produktauswahl.">
+  <link rel="preconnect" href="https://static.nike.com" crossorigin>
+  <style>
+    :root {
+      --paper:#f5f2e9;
+      --white:#fffef9;
+      --ink:#233c35;
+      --muted:#59685f;
+      --line:#d4d8cc;
+      --accent:#e4ef84;
+      --warm:#e9ded0;
+      --radius:4px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+    a{color:inherit;text-decoration-thickness:1px;text-underline-offset:4px}
+    a:focus-visible,summary:focus-visible{outline:3px solid #8a4e12;outline-offset:5px}
+    img{display:block;max-width:100%;height:auto}
+    h1,h2,h3,p,figure{margin:0}
+    h1,h2,h3{line-height:1.12}
+    h1{font-size:clamp(2.65rem,6.8vw,5.6rem);letter-spacing:-.065em;font-weight:650;max-width:920px}
+    h2{font-size:clamp(1.9rem,3.6vw,3rem);letter-spacing:-.045em;font-weight:620}
+    h3{font-size:1.25rem;letter-spacing:-.02em}
+    p+p{margin-top:1rem}
+    .wrap{width:min(1240px,calc(100% - 48px));margin-inline:auto}
+    .masthead{border-bottom:1px solid var(--line)}
+    .masthead .wrap{min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .logo{font-size:clamp(1.1rem,2vw,1.5rem);font-weight:750;letter-spacing:-.045em;text-decoration:none;white-space:nowrap}
+    .nav{display:flex;align-items:center;gap:24px;font-size:.88rem}
+    .nav a{text-decoration:none}
+    .nav a:hover{text-decoration:underline}
+    .eyebrow{display:block;font-size:.73rem;letter-spacing:.15em;text-transform:uppercase;font-weight:750}
+    .intro{padding:42px 0 28px}
+    .intro .eyebrow{margin-bottom:16px}
+    .intro p{max-width:760px;margin-top:20px;color:var(--muted);font-size:1.07rem}
+    .categories{padding:0 0 38px}
+    .category-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:14px}
+    .category-head h2{font-size:1rem;letter-spacing:0}
+    .category-head p{font-size:.8rem;color:var(--muted)}
+    .category-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .category-grid a{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:15px;background:var(--white);border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-decoration:none;font-size:.88rem;font-weight:650;overflow-wrap:anywhere;transition:background .15s}
+    .category-grid a:hover{background:var(--accent)}
+    .category-grid span{font-weight:400;color:var(--muted)}
+    .feature{display:grid;grid-template-columns:1fr 1fr;background:var(--ink);color:var(--white)}
+    .feature-copy{padding:clamp(28px,5vw,64px);display:flex;flex-direction:column;justify-content:center}
+    .feature-copy h2{margin:18px 0}
+    .feature-copy p{color:#dbe3d9}
+    .feature-copy .definition{font-size:1.05rem}
+    .feature-image{background:#f4f4f4;display:flex;align-items:center;justify-content:center;min-width:0}
+    .feature-image img{width:100%;aspect-ratio:1/1;object-fit:contain}
+    .button{display:inline-flex;align-items:center;justify-content:space-between;gap:26px;padding:14px 20px;background:var(--accent);color:var(--ink);text-decoration:none;font-weight:750;font-size:.9rem;border:1px solid transparent;border-radius:var(--radius);width:fit-content;margin-top:25px}
+    .button:hover{background:#f0f6ba}
+    .feature-caption{margin-top:20px;font-size:.76rem;color:#c1cfc4}
+    .section{padding:70px 0;border-bottom:1px solid var(--line)}
+    .section-heading{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:30px}
+    .section-heading .eyebrow{margin-bottom:12px}
+    .section-heading p{color:var(--muted);max-width:500px}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+    .step{padding:26px 26px 8px 0}
+    .step+.step{padding-left:26px;border-left:1px solid var(--line)}
+    .number{font-size:.8rem;display:block;margin-bottom:22px;color:var(--muted)}
+    .step h3{margin-bottom:13px}
+    .step p{font-size:.94rem;color:var(--muted)}
+    .gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+    .gallery figure{min-width:0}
+    .image-box{background:#eeece6;overflow:hidden}
+    .image-box img{width:100%;aspect-ratio:4/5;object-fit:contain}
+    figcaption{padding-top:14px}
+    figcaption strong{display:block;font-size:1rem;margin-bottom:6px}
+    figcaption p{font-size:.86rem;color:var(--muted)}
+    .image-note{font-size:.78rem;color:var(--muted);margin-top:24px;max-width:850px}
+    .journal{display:grid;grid-template-columns:260px 1fr;gap:50px}
+    .journal-intro .eyebrow{margin-bottom:14px}
+    .journal-intro p{margin-top:18px;color:var(--muted);font-size:.92rem}
+    .article{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:0 0 28px}
+    .article+.article{border-top:1px solid var(--line);padding-top:28px}
+    .article .index{font-size:.8rem;color:var(--muted);padding-top:3px}
+    .article h3{margin-bottom:13px;font-size:1.35rem}
+    .article p{font-size:.94rem;max-width:820px}
+    .article p+p{color:var(--muted)}
+    .table-scroll{overflow-x:auto;margin-top:26px;border:1px solid var(--line);background:var(--white)}
+    table{border-collapse:collapse;width:100%;min-width:620px;text-align:left;font-size:.9rem}
+    caption{text-align:left;padding:17px;font-weight:750}
+    th,td{padding:14px 17px;vertical-align:top;border-top:1px solid var(--line)}
+    th{background:#e9ede2;font-weight:700}
+    td:first-child{font-weight:650;width:22%}
+    .faq-layout{display:grid;grid-template-columns:1fr 1.7fr;gap:60px}
+    .faq-layout .eyebrow{margin-bottom:14px}
+    .faq-layout>div>p{margin-top:20px;color:var(--muted)}
+    details{border-top:1px solid var(--line)}
+    details:last-child{border-bottom:1px solid var(--line)}
+    summary{padding:20px 28px 20px 0;font-size:1rem;font-weight:700;cursor:pointer}
+    details p{padding:0 24px 22px 0;color:var(--muted);font-size:.94rem}
+    .closing{padding:48px;background:var(--warm);display:flex;align-items:center;justify-content:space-between;gap:32px;margin:44px 0}
+    .closing h2{font-size:2rem}
+    .closing p{margin-top:12px;max-width:670px;color:var(--muted)}
+    .closing .button{flex-shrink:0;margin-top:0;background:var(--ink);color:var(--white)}
+    .closing .button:hover{background:#355448}
+    footer{border-top:1px solid var(--line);padding:28px 0 38px}
+    .footer-top{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:20px}
+    footer p{color:var(--muted);font-size:.78rem;max-width:1000px}
+    .footer-top span{font-size:.78rem;color:var(--muted)}
+    @media(min-width:900px){.deferred{content-visibility:auto;contain-intrinsic-size:auto 640px}}
+    @media(max-width:960px){
+      .category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 20px}
+      .journal{grid-template-columns:1fr;gap:30px}
+      .faq-layout{grid-template-columns:1fr;gap:30px}
+      .closing{padding:32px;align-items:flex-start;flex-direction:column}
+    }
+    @media(max-width:640px){
+      .wrap{width:calc(100% - 32px)}
+      .masthead .wrap{min-height:76px}
+      .nav{gap:14px}
+      .nav .desktop{display:none}
+      .intro{padding-top:30px}
+      .intro p{font-size:1rem}
+      .category-head{align-items:flex-start;flex-direction:column;gap:6px}
+      .category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .category-grid a{padding:12px;min-height:66px;font-size:.8rem}
+      .feature{grid-template-columns:1fr}
+      .feature-copy{padding:30px 24px}
+      .feature-image img{aspect-ratio:6/5}
+      .section{padding:46px 0}
+      .section-heading{grid-template-columns:1fr;gap:18px}
+      .steps{grid-template-columns:1fr}
+      .step,.step+.step{padding:24px 0;border-left:0}
+      .step+.step{border-top:1px solid var(--line)}
+      .number{margin-bottom:12px}
+      .gallery{gap:26px 14px}
+      figcaption strong{font-size:.93rem}
+      figcaption p{font-size:.8rem}
+      .article{grid-template-columns:28px 1fr;gap:10px}
+      .closing{padding:26px;margin:30px 0}
+      .closing h2{font-size:1.7rem}
+      .footer-top{align-items:flex-start;flex-direction:column;gap:8px}
+    }
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+    @media print{
+      body{background:white;color:black}
+      .nav,.button{display:none}
+      .section{padding:25px 0}
+      .feature{background:white;color:black}
+      .feature-copy p,.feature-caption{color:black}
+      details p{display:block}
+      .deferred{content-visibility:visible}
+    }
+  </style>
+  <!--
+    Dateiname: index.html
+    Recherchehinweis:
+    Die Google-Ergebnisseite konnte nicht direkt abgerufen werden.
+    Die folgenden zehn thematisch passenden Websites wurden über die
+    verfügbare Websuche ausgewertet; keine bestätigte Google-Rangfolge.
+
+    1. orientdigindex.com/en/orientdig-spreadsheet
+       Themen: Produktquelle, Varianten, Prüfdatum, dokumentierte Auswahl.
+    2. qcradar.com/orientdig-spreadsheet
+       Themen: Weidian, Taobao, QC-Fotos, Kostenvergleich.
+    3. orientdigtable.com
+       Themen: Kategorien, Größen, Versandvolumen.
+    4. orientdigi.com
+       Themen: Produktverzeichnis, Kategorien, QC-Bilder.
+    5. orientdigs.com
+       Themen: Spreadsheet-Grundlagen, Produktlinks, Auswahl.
+    6. orientdigfinds.com
+       Themen: Kategorien und produktbezogene Verweise.
+    7. spreadsheet-orientdig.com
+       Themen: Kleidungsdetails, QC-Fotos, Produktübersicht.
+    8. usfansyupoo.com/agents/orientdig/
+       Themen: Produktfunde und bildbezogene Suche.
+    9. orientdig.top
+       Themen: Schuhe, Oberteile, Kopfbedeckungen, Accessoires.
+    10. spreadsheet-kakobuy.com/agents/orientdig-spreadsheet
+        Themen: ursprüngliche Produktlinks und Zeilenprüfung.
+
+    Sekundäre Suchthemen:
+    OrientDig Finds; OrientDig QC-Fotos; OrientDig Größenberatung;
+    OrientDig Produktlinks; OrientDig Shopping Guide.
+
+    Verwendete Longtail-Themen:
+    OrientDig spreadsheet auf Deutsch; Produktlinks nach Kategorien;
+    Sneaker-Größen vergleichen; Fußlänge in Zentimetern;
+    Schuhbreite beurteilen; Sohlenprofil ansehen;
+    Hoodie-Brustweite messen; Schulterbreite vergleichen;
+    Ärmellänge prüfen; T-Shirt-Länge messen;
+    Stoffzusammensetzung lesen; Druckplatzierung vergleichen;
+    Jackenfutter ansehen; Reißverschluss prüfen;
+    Hosenbund messen; Innenbeinlänge vergleichen;
+    Shorts-Passform beurteilen; Cap-Umfang prüfen;
+    verstellbaren Verschluss ansehen; Set-Größen einzeln prüfen;
+    Unterwäsche-Material beachten; Jersey-Schnitt vergleichen;
+    Schmuckverschluss ansehen; Armbandlänge messen;
+    Taschengröße vergleichen; QC-Fotos einordnen;
+    Produktvariante zuordnen; Original-Link dokumentieren;
+    Versandgewicht berücksichtigen; Gesamtkosten vergleichen.
+
+    Externe Markenbilder dienen ausschließlich der redaktionellen
+    Veranschaulichung. Verfügbarkeit der Bildserver kann sich ändern.
+    Keine erfundenen Angebote, Bewertungen oder Markenpartnerschaften.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebPage",
+        "@id":"#webpage",
+        "name":"OrientDig spreadsheet: Kategorien, QC & Größen erklärt",
+        "description":"Ein unabhängiger deutschsprachiger Leitfaden zur Auswahl von Produktlinks, zum Vergleich von Maßen und zur Einordnung von QC-Fotos.",
+        "inLanguage":"de",
+        "about":{
+          "@type":"Thing",
+          "name":"OrientDig spreadsheet",
+          "description":"Eine nach Produkten oder Kategorien geordnete Linkübersicht als Ausgangspunkt für die eigene Recherche."
+        },
+        "hasPart":[
+          {"@id":"#groessen-artikel"},
+          {"@id":"#qc-artikel"},
+          {"@id":"#kosten-artikel"},
+          {"@id":"#faq"}
+        ]
+      },
+      {
+        "@type":"Article",
+        "@id":"#groessen-artikel",
+        "headline":"Größenberatung: erst messen, dann auswählen",
+        "inLanguage":"de",
+        "articleBody":"Vergleiche Hoodie-Brustweite, Schulterbreite und Ärmellänge mit einem gut passenden Kleidungsstück. Bei T-Shirts helfen die Länge und die Stoffzusammensetzung. Für Hosen sind Bundweite und Innenbeinlänge hilfreich. Bei Sneakern sind Fußlänge, verfügbare Innenmaße und Schuhbreite relevant. Größenbuchstaben allein reichen für einen verlässlichen Vergleich nicht aus.",
+        "isPartOf":{"@id":"#webpage"}
+      },
+      {
+        "@type":"Article",
+        "@id":"#qc-artikel",
+        "headline":"QC-Fotos: Details erkennen, Grenzen verstehen",
+        "inLanguage":"de",
+        "articleBody":"QC-Fotos sind Bilder zur Sichtkontrolle. Prüfe die Zuordnung zur Produktvariante, die Bildwinkel und die sichtbaren Details. Bilder können Form, Nähte oder Verschlüsse zeigen. Sie belegen allein weder Echtheit noch Haltbarkeit. Licht und Kamera können die Farbwiedergabe beeinflussen.",
+        "isPartOf":{"@id":"#webpage"}
+      },
+      {
+        "@type":"Article",
+        "@id":"#kosten-artikel",
+        "headline":"Produktlinks und Gesamtkosten gemeinsam prüfen",
+        "inLanguage":"de",
+        "articleBody":"Dokumentiere den ursprünglichen Produktlink, die gewählte Variante und das Prüfdatum. Vergleiche neben dem Artikelpreis auch angezeigte Versandkosten und weitere im Bestellprozess ausgewiesene Kosten. Verpackung und Versandvolumen können den Vergleich verändern. Diese Seite berechnet keine Versandpreise.",
+        "isPartOf":{"@id":"#webpage"}
+      },
+      {
+        "@type":"FAQPage",
+        "@id":"#faq",
+        "inLanguage":"de",
+        "mainEntity":[
+          {
+            "@type":"Question",
+            "name":"Was ist ein OrientDig spreadsheet?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Ein OrientDig spreadsheet ist eine Tabelle oder ein Verzeichnis mit Produktlinks und ergänzenden Angaben. Es hilft beim Sortieren möglicher Funde; aktuelle Verfügbarkeit, Qualität und Echtheit müssen separat geprüft werden."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Wohin führen die Links auf dieser Seite?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Die Kategorie-Einstiege führen zu den jeweils bezeichneten Kategorien auf hipobuyfind.com. Alle übrigen Navigations- und Aktionslinks öffnen https://www.hipobuyfind.com. Sie sind keine direkten OrientDig-Produktlinks."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Wie helfen QC-Fotos bei der Auswahl?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"QC-Fotos helfen, sichtbare Details wie Form, Nähte, Druckplatzierung und Verschlüsse zu betrachten. Prüfe, ob die Bilder zur gewählten Variante gehören. Fotos allein bestätigen weder Echtheit noch langfristige Haltbarkeit."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Wie vergleiche ich Größen sinnvoll?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Vergleiche konkrete Zentimetermaße mit einem passenden Kleidungsstück oder deinen eigenen Maßen. Beachte die jeweilige Messmethode. Bei Schuhen sind Fußlänge und verfügbare Innenmaße hilfreicher als eine Größenbezeichnung allein."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Sind die gezeigten Markenartikel auf hipobuyfind.com verfügbar?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Aus den Bildern lässt sich keine Verfügbarkeit ableiten. Sie sind redaktionelle Stilbeispiele von Nike, Louis Vuitton, Gucci, Hermès und Dior. Prüfe das konkrete Angebot und seine Angaben auf der Zielseite."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Ist dies eine offizielle OrientDig- oder Markenseite?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Nein. Diese Seite ist ein unabhängiger Themenleitfaden. Eine offizielle Verbindung zu OrientDig oder den abgebildeten Marken wird nicht behauptet."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+<link rel="canonical" href="https://kakobuyfinds.github.io/suwnn/">
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap">
+      <a class="logo" href="https://www.hipobuyfind.com" aria-label="hipobuyfind.com öffnen">hipobuyfind.com</a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a class="desktop" href="https://www.hipobuyfind.com">Produkte entdecken</a>
+        <a href="https://www.hipobuyfind.com">Zum Katalog ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro wrap" aria-labelledby="page-title">
+      <span class="eyebrow">Der Auswahl-Guide · Deutsch</span>
+      <h1 id="page-title">OrientDig spreadsheet.<br>Mit Blick fürs Detail.</h1>
+      <p>Eine gute Auswahl beginnt bei der richtigen Kategorie. Dieser unabhängige Leitfaden hilft dir, Produktlinks zu ordnen, Maße zu vergleichen und Bilder bewusster zu lesen. Die Kategorie-Einstiege führen dich zu hipobuyfind.com.</p>
+    </section>
+
+    <nav class="categories wrap" aria-label="Produktkategorien auf hipobuyfind.com">
+      <div class="category-head">
+        <h2>Direkt zur passenden Kategorie</h2>
+        <p>Kategorie wählen · auf hipobuyfind.com weiterstöbern</p>
+      </div>
+      <div class="category-grid">
+        <a href="https://hipobuyfind.com/category-911-Shoes.html" aria-label="Shoes – Schuhe ansehen">Shoes <span aria-hidden="true">↗</span></a>
+        <a href="https://hipobuyfind.com/category-912-Hoodies%2FSweaters.html" aria-label="Hoodies und Sweater ansehen">Hoodies/Sweaters <span aria-hidden="true">↗</span></a>
+        <a href="https://hipobuyfind.com/category-913-T-Shirts.html" aria-label="T-Shirts ansehen">T-Shirts <span aria-hidden="true">↗</span></a>
+        <a href="https://hipobuyfind.com/category-914-Jackets.html" aria-label="Jackets – Jacken ansehen">Jackets <span aria-hidden="true">↗</span></a>
+        <a href="https://hipobuyfind.com/category-915-Pants%2FShorts.html" aria-label="Hosen und Shorts ansehen">Pants/Shorts <span aria-hidden="true">↗</span></a>
+        <a href="https://hipobuyfind.com/category-916-Headwear.html" aria-label="Headwear – Kopfbedeckungen ansehen">Headwear <span aria-hidden="true">↗</span></a>
+        <a href="https://hipobuyfind.com/category-917-Sets.html" aria-label="Sets ansehen">Sets <span aria-hidden="true">↗</span></a>
+        <a href="https://hipobuyfind.com/category-918-underwear%2Funderpants.html" aria-label="Unterwäsche ansehen">Underwear/underpants <span aria-hidden="true">↗</span></a>
+        <a href="https://hipobuyfind.com/category-919-Jersey.html" aria-label="Jersey – Trikots ansehen">Jersey <span aria-hidden="true">↗</span></a>
+        <a href="https://hipobuyfind.com/category-920-Accessories.html" aria-label="Accessories – Accessoires ansehen">Accessories <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+
+    <section class="wrap" aria-labelledby="definition-title">
+      <div class="feature">
+        <div class="feature-copy">
+          <span class="eyebrow">Weniger Umwege. Mehr Überblick.</span>
+          <h2 id="definition-title">Was bringt dir eine Produktübersicht?</h2>
+          <p class="definition">Ein <strong>OrientDig spreadsheet</strong> ist eine Tabelle oder ein Verzeichnis mit Produktlinks und ergänzenden Angaben. Es hilft beim Sortieren möglicher Funde; aktuelle Verfügbarkeit, Qualität und Echtheit müssen separat geprüft werden.</p>
+          <p>Beginne mit einem konkreten Bedarf: ein heller Sneaker, ein passender Hoodie oder ein kleines Accessoire. Vergleiche anschließend die genaue Variante und ihre Angaben.</p>
+          <a class="button" href="https://www.hipobuyfind.com">Produkte auf hipobuyfind.com entdecken <span aria-hidden="true">↗</span></a>
+          <div class="feature-caption">Bildbeispiel: Nike Air Force 1 ’07 in Weiß. Redaktionelle Illustration, kein konkretes Verkaufsangebot.</div>
+        </div>
+        <figure class="feature-image" aria-label="Sneaker als Stilbeispiel">
+          <img
+            src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,q_auto:eco/e6da41fa-1be4-4ce5-b89c-22be4f1f02d4/AIR%2BFORCE%2B1%2B%2707.png"
+            alt="Weißer Nike Air Force 1 ’07 als redaktionelles Sneaker-Beispiel"
+            width="864" height="864"
+            loading="eager" fetchpriority="high" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section wrap" aria-labelledby="workflow-title">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Dein nächster Schritt</span>
+          <h2 id="workflow-title">Aus vielen Funden wird eine klare Auswahl.</h2>
+        </div>
+        <p>Für OrientDig Finds ist eine kleine, nachvollziehbare Merkliste oft praktischer als eine lange Sammlung ungeprüfter Links.</p>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <span class="number">01 / EINGRENZEN</span>
+          <h3>Bedarf vor Marke</h3>
+          <p>Lege Kategorie, Einsatz und gewünschte Passform fest. Bei einem Alltagsschuh helfen Fragen nach Schuhbreite und Sohlenprofil; bei einer Jacke stehen Schnitt und Futter im Vordergrund.</p>
+        </article>
+        <article class="step">
+          <span class="number">02 / ABGLEICHEN</span>
+          <h3>Die Variante zählt</h3>
+          <p>Prüfe Farbe, Größe und Produktkennung gemeinsam. OrientDig Produktlinks sind nur dann nützlich, wenn die geöffnete Variante zu deinen Notizen und den betrachteten Bildern passt.</p>
+        </article>
+        <article class="step">
+          <span class="number">03 / FESTHALTEN</span>
+          <h3>Eine begründete Merkliste</h3>
+          <p>Notiere Original-Link, relevante Maße, Prüfdatum und offene Fragen. So erkennst du später, ob ein Eintrag noch aktuell ist oder erneut geprüft werden sollte.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap deferred" aria-labelledby="inspiration-title">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Visuelles Notizbuch</span>
+          <h2 id="inspiration-title">Vier Perspektiven auf Details.</h2>
+        </div>
+        <p>Markenbilder können Formen und Proportionen veranschaulichen. Für eine Kaufentscheidung brauchst du zusätzlich die Angaben und Bilder des konkreten Angebots.</p>
+      </div>
+      <div class="gallery">
+        <figure>
+          <div class="image-box">
+            <img
+              src="https://sg.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-speedy-bandouliere-25--M46977_PM2_Front%20view.jpg"
+              alt="Louis Vuitton Speedy Bandoulière 25 mit braunem Monogram-Muster und hellen Henkeln"
+              width="600" height="750" loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            <strong>Louis Vuitton · Proportion</strong>
+            <p>Beim Taschengröße-Vergleich zählen Breite, Höhe, Tiefe und die Länge des Trageriemens.</p>
+          </figcaption>
+        </figure>
+        <figure>
+          <div class="image-box">
+            <img
+              src="https://media.gucci.com/style/DarkGray_Center_0_0_490x245/1789749069/A00CSN_4HBLY_1000_015_100_0000_Light-gg-canvas-baseball-hat-with-crystals.jpg"
+              alt="Schwarze Gucci Baseballkappe mit GG-Muster und Kristallbesatz"
+              width="490" height="245" loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            <strong>Gucci · Kopfbedeckung</strong>
+            <p>Cap-Umfang prüfen, Schirmform betrachten und den verstellbaren Verschluss ansehen.</p>
+          </figcaption>
+        </figure>
+        <figure>
+          <div class="image-box">
+            <img
+              src="https://assets.hermes.com/is/image/hermesproduct/004091S%2016_flat_wm_102?wid=600&amp;qlt=75"
+              alt="Quadratisches Hermès Flagship Seidentuch mit grafischem Motiv in Weiß, Schwarz und Grau"
+              width="600" height="600" loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            <strong>Hermès · Muster und Fläche</strong>
+            <p>Bei Tüchern helfen Gesamtansicht, Randdetails und die angegebenen Maße.</p>
+          </figcaption>
+        </figure>
+        <figure>
+          <div class="image-box">
+            <img
+              src="https://assets.christiandior.com/is/image/diorprod/B1310PTCRSD301_SBG_E01-3?wid=600&amp;hei=750&amp;qlt=75"
+              alt="Dior Petit CD Armband mit goldfarbenen Kettengliedern und weißer Kunstharzperle"
+              width="600" height="750" loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            <strong>Dior · Kleine Verbindungen</strong>
+            <p>Armbandlänge messen und den Schmuckverschluss ansehen; ein Detailfoto ergänzt die Gesamtansicht.</p>
+          </figcaption>
+        </figure>
+      </div>
+      <p class="image-note">Die Abbildungen stammen von externen Marken-Bildservern und dienen als Stilbeispiele. Sie bestätigen weder Verfügbarkeit noch Echtheit eines Angebots auf hipobuyfind.com. Es wird keine offizielle Zusammenarbeit mit den Marken behauptet.</p>
+    </section>
+
+    <section class="section wrap deferred" aria-labelledby="journal-title">
+      <div class="journal">
+        <div class="journal-intro">
+          <span class="eyebrow">Lesestoff für deine Auswahl</span>
+          <h2 id="journal-title">Der kompakte Shopping Guide.</h2>
+          <p>Drei kurze Beiträge zu Fragen, die bei einer Produktübersicht schnell untergehen: Passform, Bildaussage und Vergleichbarkeit.</p>
+        </div>
+        <div>
+          <article class="article" id="groessen-artikel">
+            <span class="index" aria-hidden="true">01</span>
+            <div>
+              <h3>Größenberatung: erst messen, dann auswählen</h3>
+              <p>Eine hilfreiche OrientDig Größenberatung beginnt mit einem Referenzstück. Lege einen passenden Hoodie flach hin und miss Brustweite, Schulterbreite und Ärmellänge. Prüfe anschließend, ob die angebotene Größentabelle dieselbe Messmethode verwendet. Bei T-Shirts sind zusätzlich Länge und Stoffzusammensetzung interessant.</p>
+              <p>Für Hosen helfen Bundweite und Innenbeinlänge; bei Shorts kommt die gewünschte Beinweite hinzu. Prüfe bei Sets die Größen von Ober- und Unterteil einzeln. Bei Unterwäsche sind Material und Schnitt relevant, bei Jerseys die gewünschte Bewegungsfreiheit. Für Sneaker vergleiche Fußlänge in Zentimetern, verfügbare Innenmaße und Schuhbreite. Ein Größenbuchstabe allein erklärt die Passform nicht.</p>
+            </div>
+          </article>
+          <article class="article" id="qc-artikel">
+            <span class="index" aria-hidden="true">02</span>
+            <div>
+              <h3>QC-Fotos: Details erkennen, Grenzen verstehen</h3>
+              <p>OrientDig QC-Fotos können eine Sichtkontrolle unterstützen. Beginne mit der Zuordnung zur Produktvariante: Stimmen Farbe, Modell und Größe mit dem Eintrag überein? Betrachte danach Gesamtansicht und Detailaufnahmen. Bei Kleidung helfen Nahaufnahmen von Nähten, Bündchen und Druckplatzierung; bei Jacken sind Futter und Reißverschluss nützlich.</p>
+              <p>Fotos zeigen nur das Sichtbare. Licht und Kamera können Farben verändern; Tragegefühl und langfristige Haltbarkeit lassen sich daraus kaum beurteilen. Auch ein deutlich erkennbares Logo ist kein Echtheitsnachweis. Fehlt ein entscheidendes Detail, halte die Frage offen, statt es aus einem unscharfen Bild abzuleiten.</p>
+            </div>
+          </article>
+          <article class="article" id="kosten-artikel">
+            <span class="index" aria-hidden="true">03</span>
+            <div>
+              <h3>Produktlinks und Gesamtkosten gemeinsam prüfen</h3>
+              <p>Für einen sinnvollen Vergleich müssen die Produkte dieselbe Aufgabe erfüllen. Notiere den ursprünglichen Produktlink, die gewählte Variante und das Datum deiner Prüfung. Ein veränderter Link, eine andere Größe oder fehlendes Zubehör kann einen scheinbar passenden Vergleich unbrauchbar machen.</p>
+              <p>Betrachte neben dem Artikelpreis auch die aktuell angezeigten Versandkosten und weitere im Bestellprozess ausgewiesene Kosten. Verpackung, Versandgewicht und Paketvolumen können das Ergebnis verändern. Dieser OrientDig Shopping Guide berechnet keine Versandpreise und nennt keine pauschalen Lieferzeiten oder Rabattversprechen.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="table-scroll" role="region" aria-label="Vergleichstabelle zur Produktauswahl" tabindex="0">
+        <table>
+          <caption>Welche Angaben gehören in deine Merkliste?</caption>
+          <thead>
+            <tr>
+              <th scope="col">Bereich</th>
+              <th scope="col">Hilfreiche Prüfung</th>
+              <th scope="col">In der Übersicht festhalten</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Schuhe</td>
+              <td>Fußlänge, verfügbare Innenmaße, Breite und Sohlenansicht vergleichen.</td>
+              <td>Modell, Größe, Variante und offene Passformfragen.</td>
+            </tr>
+            <tr>
+              <td>Oberteile und Jacken</td>
+              <td>Brustweite, Länge, Ärmel, Material und gegebenenfalls Futter prüfen.</td>
+              <td>Zentimetermaße samt Messmethode statt nur S, M oder L.</td>
+            </tr>
+            <tr>
+              <td>Hosen, Shorts und Sets</td>
+              <td>Bund, Innenbeinlänge und Schnitt vergleichen; Set-Teile einzeln betrachten.</td>
+              <td>Maße für jedes Teil und gewünschte Passform.</td>
+            </tr>
+            <tr>
+              <td>Kopfbedeckungen</td>
+              <td>Umfang, Verstellbereich, Schirm und Verschluss ansehen.</td>
+              <td>Größenbereich und relevante Detailbilder.</td>
+            </tr>
+            <tr>
+              <td>Schmuck und Accessoires</td>
+              <td>Länge, Abmessungen, Materialangaben und Verschlüsse prüfen.</td>
+              <td>Konkrete Maße, angegebene Materialien und fehlende Informationen.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section wrap deferred" aria-labelledby="faq-title">
+      <div class="faq-layout">
+        <div>
+          <span class="eyebrow">Direkt beantwortet</span>
+          <h2 id="faq-title">Häufige Fragen.</h2>
+          <p>Das Wesentliche zu Produktübersichten, Weiterleitungen und der Aussagekraft von Bildern.</p>
+        </div>
+        <div>
+          <details open>
+            <summary>Was ist ein OrientDig spreadsheet?</summary>
+            <p>Ein OrientDig spreadsheet ist eine Tabelle oder ein Verzeichnis mit Produktlinks und ergänzenden Angaben. Es hilft beim Sortieren möglicher Funde; aktuelle Verfügbarkeit, Qualität und Echtheit müssen separat geprüft werden.</p>
+          </details>
+          <details>
+            <summary>Wohin führen die Links auf dieser Seite?</summary>
+            <p>Die Kategorie-Einstiege führen zu den jeweils bezeichneten Kategorien auf hipobuyfind.com. Alle übrigen Navigations- und Aktionslinks öffnen https://www.hipobuyfind.com. Sie sind keine direkten OrientDig-Produktlinks.</p>
+          </details>
+          <details>
+            <summary>Wie helfen QC-Fotos bei der Auswahl?</summary>
+            <p>QC-Fotos helfen, sichtbare Details wie Form, Nähte, Druckplatzierung und Verschlüsse zu betrachten. Prüfe, ob die Bilder zur gewählten Variante gehören. Fotos allein bestätigen weder Echtheit noch langfristige Haltbarkeit.</p>
+          </details>
+          <details>
+            <summary>Wie vergleiche ich Größen sinnvoll?</summary>
+            <p>Vergleiche konkrete Zentimetermaße mit einem passenden Kleidungsstück oder deinen eigenen Maßen. Beachte die jeweilige Messmethode. Bei Schuhen sind Fußlänge und verfügbare Innenmaße hilfreicher als eine Größenbezeichnung allein.</p>
+          </details>
+          <details>
+            <summary>Sind die gezeigten Markenartikel auf hipobuyfind.com verfügbar?</summary>
+            <p>Aus den Bildern lässt sich keine Verfügbarkeit ableiten. Sie sind redaktionelle Stilbeispiele von Nike, Louis Vuitton, Gucci, Hermès und Dior. Prüfe das konkrete Angebot und seine Angaben auf der Zielseite.</p>
+          </details>
+          <details>
+            <summary>Ist dies eine offizielle OrientDig- oder Markenseite?</summary>
+            <p>Nein. Diese Seite ist ein unabhängiger Themenleitfaden. Eine offizielle Verbindung zu OrientDig oder den abgebildeten Marken wird nicht behauptet.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <section class="closing" aria-labelledby="closing-title">
+        <div>
+          <span class="eyebrow">Deine Auswahl beginnt mit einer Kategorie</span>
+          <h2 id="closing-title">Finde, was zu deinem Alltag passt.</h2>
+          <p>Öffne den Katalog und vergleiche konkrete Angebote mit deinen Maßen und Anforderungen. Nimm die offenen Fragen aus diesem Guide einfach mit.</p>
+        </div>
+        <a class="button" href="https://www.hipobuyfind.com">Katalog öffnen <span aria-hidden="true">↗</span></a>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <a class="logo" href="https://www.hipobuyfind.com">hipobuyfind.com</a>
+        <span>Unabhängiger Themenleitfaden · Sprache: Deutsch</span>
+      </div>
+      <p>OrientDig spreadsheet ist das Thema dieser Informationsseite. Die Seite stellt keine herunterladbare Tabelle, keinen Live-Bestand und keine eigenen QC-Prüfungen bereit. Markennamen dienen der redaktionellen Einordnung; Bildrechte liegen bei den jeweiligen Rechteinhabern. Maßgeblich für ein Angebot sind die aktuellen Angaben auf der jeweiligen Zielseite.</p>
+    </div>
+  </footer>
+</body>
+</html>
